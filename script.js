@@ -13,7 +13,7 @@ let results = [];
 		let lowerInput = input.toLowerCase();
 		let lowerFruit = fruit.toLowerCase();
 		if(lowerFruit.includes(lowerInput)){
-			results.push(fruit);
+			results.push(fruit[i]);
 		}
 		}
 	
@@ -47,28 +47,21 @@ document.querySelector("input[name='query']").addEventListener("input", searchHa
 
 
 function showSuggestions(results, inputVal) {
-let resultsList = document.getElementById("results-list");
-resultsList.innerHTML = " ";
-if (results.length > 0 && inputVal !== " "){
-	let select = document.createElement("select");
-	for (let i = 0; i < results.length; i++) {
-		let option = document.createElement("option");
-		option.value = results[i];
-		option.textContent = results[i];
-		option.addEventListener("mouseover", highlightSuggestion);
-		select.appendChild(option);
-	}
-	resultsList.appendChild(select);
-}
+var resultsList = document.getElementById("results-list");
+var option = results.target;
+
+resultsList.addEventListener("mouseover, highlightSuggestion")
+
 }
 
 function useSuggestion(e) {
-	let searchBar = document.getElementsById("search-bar");
-	searchBar.value = e;
+	var option = e.target;
+	var suggestion = option.textContent;
+	searchBox.value = suggestion;
 
 }
 
-
+resultsList.addEventListener("click, useSuggestion");
 
 input.addEventListener('keyup', searchHandler);
 suggestions.addEventListener('click', useSuggestion);

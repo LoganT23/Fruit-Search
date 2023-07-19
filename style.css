@@ -7,8 +7,13 @@
  /* TODO */
 }
 
+html {
+  height: 100%;
+}
+
 body {
-   background-color: linear-gradient(orange, red);
+   background-image: linear-gradient(orange, red);
+  
 }
 
 input {
@@ -16,10 +21,19 @@ input {
 }
 
 .search-container {
- /* TODO */
+ text-align: center;
+ display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+ margin: 20px;
+ padding: 10px;
+ border: 2px solid black;
+ opacity: 0.5;
 }
 .search-container input,
 .search-container .suggestions {
+  
   /* TODO */
 }
 .search-container input {
@@ -33,15 +47,20 @@ ul {
   /* TODO */
 }
 ul.has-suggestions {
-  /* TODO */
+  background-color: rgb(213, 17, 158);
 }
 ul li {
-  background-color: aliceblue;
+  background-color: rgb(213, 17, 158);
 }
 ul li:hover {
-  
+  background-color: rgb(213, 17, 158);
 }
 
 input {
    /* TODO */
+}
+
+.results-list{
+  position: absolute;
+  background-color: rgb(213, 17, 158);
 }
