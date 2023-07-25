@@ -1,5 +1,5 @@
 const input = document.querySelector('#fruit');
-const suggestions = document.querySelector('.suggestions ul');
+const suggestions = document.querySelector('.suggestions');
 
 const fruit = ['Apple', 'Apricot', 'Avocado 🥑', 'Banana', 'Bilberry', 'Blackberry', 'Blackcurrant', 'Blueberry', 'Boysenberry', 'Currant', 'Cherry', 'Coconut', 'Cranberry', 'Cucumber', 'Custard apple', 'Damson', 'Date', 'Dragonfruit', 'Durian', 'Elderberry', 'Feijoa', 'Fig', 'Gooseberry', 'Grape', 'Raisin', 'Grapefruit', 'Guava', 'Honeyberry', 'Huckleberry', 'Jabuticaba', 'Jackfruit', 'Jambul', 'Juniper berry', 'Kiwifruit', 'Kumquat', 'Lemon', 'Lime', 'Loquat', 'Longan', 'Lychee', 'Mango', 'Mangosteen', 'Marionberry', 'Melon', 'Cantaloupe', 'Honeydew', 'Watermelon', 'Miracle fruit', 'Mulberry', 'Nectarine', 'Nance', 'Olive', 'Orange', 'Clementine', 'Mandarine', 'Tangerine', 'Papaya', 'Passionfruit', 'Peach', 'Pear', 'Persimmon', 'Plantain', 'Plum', 'Pineapple', 'Pomegranate', 'Pomelo', 'Quince', 'Raspberry', 'Salmonberry', 'Rambutan', 'Redcurrant', 'Salak', 'Satsuma', 'Soursop', 'Star fruit', 'Strawberry', 'Tamarillo', 'Tamarind', 'Yuzu'];
 
@@ -8,12 +8,12 @@ function search(str) {
 let results = [];
 // loop through list
 	for (let i=0; i < fruit.length; i++){
-		let fruit = fruitList[i];
+		let currentFruit = fruit[i];
 		// convert the inputs and fruit to case sensitive lower case
-		let lowerInput = input.toLowerCase();
-		let lowerFruit = fruit.toLowerCase();
+		let lowerInput = str.toLowerCase();
+		let lowerFruit = currentFruit.toLowerCase();
 		if(lowerFruit.includes(lowerInput)){
-			results.push(fruit[i]);
+			results.push(currentFruit);
 		}
 		}
 	
@@ -22,46 +22,27 @@ let results = [];
 }
 
 function searchHandler(e) {
-	//find results
-	let results = search();
-	//create dropdown
-	let resultsList = document.getElementById("results-list");
-	resultsList.innerHTML = '';
-	 // loop through the results
-	 if (results.length > 0) {
-		let select = document.createElement("select");
-		for (let i = 0; i < results.length; i++) {
-		//create new option element
-			let option = document.createElement("option");
-			// set value and tedt
-			option.value = results[i];
-			option.textContent = results[i];
-			select.appendChild(option);}
-			//append element
-			resultsList.appendChild(select);
-		}
+	suggestions.firstElementChild.remove();
+    // Find results
+    let results = search(e.target.value);
+	console.log(1, results)
+
+	const ul = document.createElement('ul');
+
+	for(let i = 0; i < results.length; i++){
+		const li = document.createElement('li');
+		li.textContent = results[i];
+		ul.appendChild(li)
+	}
+
+	suggestions.appendChild(ul);
 }
 
-document.querySelector("input[name='query']").addEventListener("input", searchHandler);
+document.querySelector("input[name='fruit']").addEventListener("input", searchHandler);
 
-
-
-function showSuggestions(results, inputVal) {
-var resultsList = document.getElementById("results-list");
-var option = results.target;
-
-resultsList.addEventListener("mouseover, highlightSuggestion")
-
+function highlightSuggestion(e) {
+    // Highlight the current suggestion
+    e.target.style.backgroundColor = "lightblue";
 }
-
-function useSuggestion(e) {
-	var option = e.target;
-	var suggestion = option.textContent;
-	searchBox.value = suggestion;
-
-}
-
-resultsList.addEventListener("click, useSuggestion");
 
 input.addEventListener('keyup', searchHandler);
-suggestions.addEventListener('click', useSuggestion);

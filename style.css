@@ -4,7 +4,9 @@
 }
 
 :focus {
- /* TODO */
+  outline: none;
+  border-color: #4d90fe;
+  box-shadow: 0 0 5px rgba(182, 177, 190, 0.912);
 }
 
 html {
@@ -14,10 +16,6 @@ html {
 body {
    background-image: linear-gradient(orange, red);
   
-}
-
-input {
- /* TODO */
 }
 
 .search-container {
@@ -33,34 +31,34 @@ input {
 }
 .search-container input,
 .search-container .suggestions {
-  
-  /* TODO */
+  width: 50%;
+    margin: 0 auto;
 }
 .search-container input {
- /* TODO */
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 .search-container .suggestions {
-   /* TODO */
+  position: relative;
 }
 
 ul {
-  /* TODO */
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 ul.has-suggestions {
-  background-color: rgb(213, 17, 158);
+  border: 1px solid #ccc;
 }
 ul li {
-  background-color: rgb(213, 17, 158);
+  padding: 12px;
 }
 ul li:hover {
-  background-color: rgb(213, 17, 158);
+  background-color: #eee;
 }
 
 input {
-   /* TODO */
-}
-
-.results-list{
-  position: absolute;
-  background-color: rgb(213, 17, 158);
+  width: calc(100% - 24px);
 }
