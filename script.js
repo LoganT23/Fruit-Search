@@ -32,10 +32,20 @@ function searchHandler(e) {
 	for(let i = 0; i < results.length; i++){
 		const li = document.createElement('li');
 		li.textContent = results[i];
+		li.addEventListener('mousehover', highlightSuggestion);
+		li.addEventListener('click', selectSuggestion);
 		ul.appendChild(li)
 	}
 
 	suggestions.appendChild(ul);
+
+	function selectSuggestion(e) {
+		// Update the value of the search input field with the selected suggestion
+		input.value = e.target.textContent;
+		// Submit the search form
+		input.form.submit();
+	}
+	
 }
 
 document.querySelector("input[name='fruit']").addEventListener("input", searchHandler);
